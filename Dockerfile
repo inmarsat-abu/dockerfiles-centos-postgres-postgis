@@ -9,7 +9,7 @@ MAINTAINER The CentOS Project <cloud-ops@centos.org>
 
 RUN yum -y update; yum clean all
 RUN yum -y install sudo epel-release; yum clean all
-RUN yum -y install postgresql-server postgresql postgresql-contrib supervisor pwgen; yum clean all
+RUN yum -y install postgresql-server postgresql postgresql-contrib postgis supervisor pwgen; yum clean all
 
 ADD ./postgresql-setup /usr/bin/postgresql-setup
 ADD ./supervisord.conf /etc/supervisord.conf
@@ -31,5 +31,4 @@ RUN echo "host    all             all             0.0.0.0/0               md5" >
 VOLUME ["/var/lib/pgsql"]
 
 EXPOSE 5432
-
 CMD ["/bin/bash", "/start_postgres.sh"]
